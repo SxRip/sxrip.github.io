@@ -1,0 +1,121 @@
+---
+---
+
+// Копия entrypoint'а темы (v7.6.x) + кастом внизу.
+// При апгрейде мажорной версии сверь верхнюю часть с
+// https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/assets/css/jekyll-theme-chirpy.scss
+//
+// $font-family-base / $font-family-heading — !default-переменные темы,
+// поэтому шрифт меняется здесь, а не грубым override'ом на body.
+
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}',
+  $font-family-base: ('JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace),
+  $font-family-heading: ('JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace)
+);
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* ------------------------------ custom below ------------------------------ */
+
+/* JetBrains Mono, self-hosted. Есть кириллица, так что RU-посты не поедут. */
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/assets/fonts/JetBrainsMono-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/assets/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/assets/fonts/JetBrainsMono-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Палитра. Полный список переменных:
+   https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/_sass/themes/_dark.scss
+   Селектор в 7.x — :root[data-bs-theme='dark'] (в 6.x был html[data-mode]). */
+:root[data-bs-theme='dark'] {
+  /* framework */
+  --main-bg: #1a1a1a;
+  --main-border-color: #2a2a2a;
+  --mask-bg: #2c2c2e;
+
+  /* текст */
+  --text-color: #c2c2c2;
+  --text-muted-color: #7d7d7d;
+  --text-muted-highlight-color: #a5a5a5;
+  --heading-color: #4ade80;
+  --label-color: #9a9a9a;
+  --link-color: #4ade80;
+  --link-underline-color: #2b6b45;
+  --blockquote-border-color: #333;
+  --blockquote-text-color: #8a8a8a;
+
+  /* сайдбар */
+  --site-title-color: #cfcfcf;
+  --site-subtitle-color: #7d7d7d;
+  --sidebar-bg: #131313;
+  --sidebar-border-color: #232323;
+  --sidebar-muted-color: #7d7d7d;
+  --sidebar-active-color: #ededed;
+  --sidebar-hover-bg: #202020;
+  --sidebar-btn-bg: #1e1e1e;
+  --sidebar-btn-color: #7a7a7a;
+  --avatar-border-color: rgb(200 200 200 / 70%);
+
+  /* топбар / поиск */
+  --topbar-bg: rgb(26 26 26 / 78%);
+  --search-border-color: #2f2f2f;
+  --search-icon-color: #6a6a6a;
+  --input-focus-border-color: #4ade80;
+
+  /* карточки постов на главной */
+  --card-bg: #212121;
+  --card-hover-bg: #2b2b2b;
+  --card-header-bg: #262626;
+  --card-shadow: rgb(0 0 0 / 55%) 0 4px 14px 0, rgb(255 255 255 / 6%) 0 0 0 1px;
+  --post-list-text-color: #a8a8a8;
+  --btn-paginator-hover-color: #2b2b2b;
+
+  /* теги / кнопки */
+  --button-bg: #1e1e1e;
+  --btn-border-color: #2c2c2c;
+  --tag-hover: #2a3f31;
+
+  /* TOC */
+  --toc-highlight: #4ade80;
+}
+
+/* Заголовки постов в списке — тот самый зелёный из скрина. */
+#post-list .card-title,
+h1.dynamic-title,
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+  color: var(--heading-color);
+}
